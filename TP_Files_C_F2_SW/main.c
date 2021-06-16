@@ -12,17 +12,6 @@ int main() {
 
 	initFileChaine(liste);
 
-	//int choix = -1;
-
-	/*while (choix != 0) {
-		printf("Veuillez choisir l'action a faire.\n1. Ajouter un premier element.\n2. Ajouter un element.\n3. Supprimer un element.\n4. Afficher la liste.\n5. Afficher la taille de la liste.\n");
-		scanf("%d", &choix);
-		switch (choix){
-			case 1 :
-
-		}
-	}*/
-
 	if (insertFileVide(liste, "je ")) {
 		printf("Insert dans liste vide ok.\n");
 	}
