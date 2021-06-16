@@ -1,27 +1,49 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "File.h"
 
+#define WINDOW_WIDTH 1024
+#define WINDOW_HEIGHT 780
 
 
-int main() {
+
+int main(){
+
+	SDL_Window* pWindow = NULL;
+
+	SDL_Surface* pSurface = NULL;
+
+	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+		printf("SDL n'a pas pu etre initialiser! SDL_Error : %s\n", SDL_GetError());
+	}
+	else {
+		pWindow = SDL_CreateWindow("An SDL2 window", 640, 480, WINDOW_WIDTH, WINDOW_HEIGHT,
+			SDL_WINDOW_SHOWN);
+
+		if (pWindow == NULL) {
+			printf("La fenêtre n'a pas pu être créée! SDL_error : %s\n", SDL_GetError());
+		}
+		else {
+			pSurface = SDL_GetWindowSurface(pWindow);
+			
+			SDL_Rect pRect;
+			pRect.x = 100;
+			pRect.y = 100;
+			pRect.w = 200;
+			pRect.h = 200;
+
+			SDL_FillRect(pSurface, pRect, SDL_MapRGB(pSurface->format, 50, 150, 0) );
+
+			SDL_UpdateWindowSurface(pWindow);
+			SDL_Delay(3000);
+		}
+	}
+
+
 
 	listeChaine* liste = NULL;
 	liste = (listeChaine*)malloc(sizeof(listeChaine));
 
 	initFileChaine(liste);
 
-	//int choix = -1;
-
-	/*while (choix != 0) {
-		printf("Veuillez choisir l'action a faire.\n1. Ajouter un premier element.\n2. Ajouter un element.\n3. Supprimer un element.\n4. Afficher la liste.\n5. Afficher la taille de la liste.\n");
-		scanf("%d", &choix);
-		switch (choix){
-			case 1 :
-
-		}
-	}*/
 
 	if (insertFileVide(liste, "je ")) {
 		printf("Insert dans liste vide ok.\n");
